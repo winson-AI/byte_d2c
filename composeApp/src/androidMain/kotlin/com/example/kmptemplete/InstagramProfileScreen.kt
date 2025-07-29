@@ -115,13 +115,39 @@ private fun StatusBar() {
 
 @Composable
 private fun SignalBars() {
-    Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(1.dp),
+        verticalAlignment = Alignment.Bottom
+    ) {
         repeat(4) { index ->
             Box(
                 modifier = Modifier
                     .width(3.dp)
-                    .height((4 + index * 2).dp)
-                    .background(Color.White, RoundedCornerShape(1.dp))
+                    .height((3 + index * 2).dp)
+                    .background(Color.White, RoundedCornerShape(0.5.dp))
+            )
+        }
+    }
+}
+
+@Composable
+private fun WifiIcon() {
+    Canvas(modifier = Modifier.size(17.dp, 12.dp)) {
+        val strokeWidth = 1.5.dp.toPx()
+        val centerX = size.width / 2
+        val centerY = size.height
+
+        // WiFi arcs - 3 curved lines
+        for (i in 1..3) {
+            val radius = (i * 3).dp.toPx()
+            drawArc(
+                color = Color.White,
+                startAngle = 200f,
+                sweepAngle = 140f,
+                useCenter = false,
+                topLeft = Offset(centerX - radius, centerY - radius),
+                size = androidx.compose.ui.geometry.Size(radius * 2, radius * 2),
+                style = androidx.compose.ui.graphics.drawscope.Stroke(width = strokeWidth)
             )
         }
     }
