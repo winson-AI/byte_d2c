@@ -53,7 +53,10 @@ fun InstagramProfileScreen() {
             
             // User Info
             UserInfoSection()
-            
+
+            // Follower Preview
+            FollowerPreview()
+
             // Action Buttons
             ActionButtons()
             
