@@ -651,45 +651,134 @@ private fun PhotoGrid() {
 
 @Composable
 private fun PhotoGridItem(index: Int) {
+    val itemHeight = 128.5.dp
+
     Box(
         modifier = Modifier
-            .aspectRatio(1f)
-            .background(Color.Gray)
+            .height(itemHeight)
+            .background(Color(0xFFDFDFE8)) // Light gray background like in design
     ) {
-        // Placeholder image
-        Icon(
-            imageVector = Icons.Default.Image,
-            contentDescription = "Post",
-            tint = Color.White,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        )
-        
-        // Indicators for reels/carousel
-        if (index % 3 == 1) {
-            // Reels indicator
-            Icon(
-                imageVector = Icons.Default.PlayArrow,
-                contentDescription = "Reel",
-                tint = Color.White,
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(8.dp)
-                    .size(12.dp)
-            )
-        } else if (index % 4 == 2) {
-            // Carousel indicator
-            Icon(
-                imageVector = Icons.Default.ViewCarousel,
-                contentDescription = "Carousel",
-                tint = Color.White,
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(8.dp)
-                    .size(12.dp)
-            )
+        // Different content based on index to simulate variety
+        when (index % 6) {
+            0 -> {
+                // Dog image placeholder
+                Icon(
+                    imageVector = Icons.Default.Pets,
+                    contentDescription = "Post",
+                    tint = Color(0xFF8A8A8A),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                )
+            }
+            1 -> {
+                // Landscape/nature placeholder with reel indicator
+                Icon(
+                    imageVector = Icons.Default.Landscape,
+                    contentDescription = "Reel",
+                    tint = Color(0xFF8A8A8A),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                )
+                // Reels indicator
+                ReelsIndicator(Modifier.align(Alignment.TopEnd))
+            }
+            2 -> {
+                // People image with carousel indicator
+                Icon(
+                    imageVector = Icons.Default.People,
+                    contentDescription = "Carousel",
+                    tint = Color(0xFF8A8A8A),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                )
+                // Carousel indicator
+                CarouselIndicator(Modifier.align(Alignment.TopEnd))
+            }
+            3 -> {
+                // Another image type with carousel
+                Icon(
+                    imageVector = Icons.Default.PhotoCamera,
+                    contentDescription = "Carousel",
+                    tint = Color(0xFF8A8A8A),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                )
+                CarouselIndicator(Modifier.align(Alignment.TopEnd))
+            }
+            4 -> {
+                // Reel content
+                Icon(
+                    imageVector = Icons.Default.Restaurant,
+                    contentDescription = "Reel",
+                    tint = Color(0xFF8A8A8A),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                )
+                ReelsIndicator(Modifier.align(Alignment.TopEnd))
+            }
+            else -> {
+                // Regular post
+                Icon(
+                    imageVector = Icons.Default.Face,
+                    contentDescription = "Post",
+                    tint = Color(0xFF8A8A8A),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(32.dp)
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun ReelsIndicator(modifier: Modifier = Modifier) {
+    Canvas(
+        modifier = modifier
+            .padding(7.dp)
+            .size(12.dp)
+    ) {
+        // Draw reels play icon
+        val path = androidx.compose.ui.graphics.Path()
+        path.moveTo(size.width * 0.3f, size.height * 0.2f)
+        path.lineTo(size.width * 0.8f, size.height * 0.5f)
+        path.lineTo(size.width * 0.3f, size.height * 0.8f)
+        path.close()
+
+        drawPath(
+            path = path,
+            color = Color.White,
+            style = androidx.compose.ui.graphics.drawscope.Fill
+        )
+    }
+}
+
+@Composable
+private fun CarouselIndicator(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .padding(7.dp)
+            .size(13.dp, 12.dp)
+    ) {
+        // Background square
+        Box(
+            modifier = Modifier
+                .size(9.dp)
+                .background(Color.White, RoundedCornerShape(2.dp))
+        )
+
+        // Overlapping square to indicate multiple items
+        Box(
+            modifier = Modifier
+                .size(9.dp)
+                .offset(x = 3.dp, y = 3.dp)
+                .background(Color.White, RoundedCornerShape(2.dp))
+        )
     }
 }
 
