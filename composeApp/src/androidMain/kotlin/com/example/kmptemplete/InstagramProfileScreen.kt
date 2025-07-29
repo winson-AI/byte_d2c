@@ -86,7 +86,8 @@ private fun StatusBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .height(47.dp)
+            .padding(horizontal = 27.dp, vertical = 14.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -94,9 +95,10 @@ private fun StatusBar() {
             text = "9:41",
             color = Color.White,
             fontSize = 17.sp,
-            fontWeight = FontWeight.SemiBold
+            fontWeight = FontWeight.SemiBold,
+            letterSpacing = (-0.408).sp
         )
-        
+
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -104,12 +106,7 @@ private fun StatusBar() {
             // Signal bars
             SignalBars()
             // WiFi icon
-            Icon(
-                imageVector = Icons.Default.Wifi,
-                contentDescription = "WiFi",
-                tint = Color.White,
-                modifier = Modifier.size(16.dp)
-            )
+            WifiIcon()
             // Battery icon
             BatteryIcon()
         }
