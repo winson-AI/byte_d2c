@@ -350,6 +350,88 @@ private fun UserInfoSection() {
 }
 
 @Composable
+private fun FollowerPreview() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        // Overlapping avatars
+        Box(
+            modifier = Modifier.width(54.dp)
+        ) {
+            // Third avatar (leftmost, back)
+            Box(
+                modifier = Modifier
+                    .size(26.dp)
+                    .clip(CircleShape)
+                    .border(1.5.dp, Color.Black, CircleShape)
+                    .background(Color.Gray)
+                    .offset(x = 0.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Follower",
+                    tint = Color.White,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(4.dp)
+                )
+            }
+
+            // Second avatar (middle)
+            Box(
+                modifier = Modifier
+                    .size(26.dp)
+                    .clip(CircleShape)
+                    .border(1.5.dp, Color.Black, CircleShape)
+                    .background(Color.Gray)
+                    .offset(x = 14.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Follower",
+                    tint = Color.White,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(4.dp)
+                )
+            }
+
+            // First avatar (rightmost, front)
+            Box(
+                modifier = Modifier
+                    .size(26.dp)
+                    .clip(CircleShape)
+                    .border(1.5.dp, Color.Black, CircleShape)
+                    .background(Color.Gray)
+                    .offset(x = 28.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Follower",
+                    tint = Color.White,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(4.dp)
+                )
+            }
+        }
+
+        Text(
+            text = "Followed by username, username\nand 100 others",
+            color = Color.White,
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Bold,
+            lineHeight = 16.sp,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+@Composable
 private fun ActionButtons() {
     Column(
         modifier = Modifier
