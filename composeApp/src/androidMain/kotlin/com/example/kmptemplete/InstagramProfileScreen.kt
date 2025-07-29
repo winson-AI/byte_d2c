@@ -586,15 +586,21 @@ private fun StoryHighlightItem(label: String) {
 
 @Composable
 private fun TabNavigation() {
-    Row(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
+            .height(50.dp)
             .background(Color.Black)
-            .padding(top = 10.dp)
     ) {
-        TabItem("Grid", true, modifier = Modifier.weight(1f))
-        TabItem("Reels", false, modifier = Modifier.weight(1f))
-        TabItem("Mentions", false, modifier = Modifier.weight(1f))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp)
+        ) {
+            TabItem("Grid", true, modifier = Modifier.weight(1f))
+            TabItem("Reels", false, modifier = Modifier.weight(1f))
+            TabItem("Mentions", false, modifier = Modifier.weight(1f))
+        }
     }
 }
 
@@ -604,29 +610,36 @@ private fun TabItem(
     isSelected: Boolean,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Box(
         modifier = modifier
-            .padding(horizontal = 53.dp, vertical = 7.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .height(40.dp)
     ) {
-        Icon(
-            imageVector = when (name) {
-                "Grid" -> Icons.Default.GridView
-                "Reels" -> Icons.Default.VideoLibrary
-                else -> Icons.Default.AlternateEmail
-            },
-            contentDescription = name,
-            tint = if (isSelected) Color.White else Color.Gray,
-            modifier = Modifier.size(24.dp)
-        )
-        
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 7.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Icon(
+                imageVector = when (name) {
+                    "Grid" -> Icons.Default.GridView
+                    "Reels" -> Icons.Default.VideoLibrary
+                    else -> Icons.Default.AlternateEmail
+                },
+                contentDescription = name,
+                tint = if (isSelected) Color.White else Color.Gray.copy(alpha = 0.5f),
+                modifier = Modifier.size(24.dp)
+            )
+        }
+
         if (isSelected) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp)
                     .background(Color.White)
-                    .padding(top = 8.dp)
+                    .align(Alignment.BottomCenter)
             )
         }
     }
