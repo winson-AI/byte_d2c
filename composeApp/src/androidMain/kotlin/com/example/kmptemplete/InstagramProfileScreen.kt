@@ -611,12 +611,14 @@ private fun TabItem(
 
 @Composable
 private fun PhotoGrid() {
+    // Photo grid covering from tab area to promotional banner
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
-        contentPadding = PaddingValues(1.dp),
+        contentPadding = PaddingValues(0.dp),
         verticalArrangement = Arrangement.spacedBy(1.dp),
         horizontalArrangement = Arrangement.spacedBy(1.dp),
-        modifier = Modifier.height(400.dp)
+        modifier = Modifier.height(647.dp), // Match the height from Figma design
+        userScrollEnabled = false // Disable scrolling as it's inside main scroll
     ) {
         items(15) { index ->
             PhotoGridItem(index)
